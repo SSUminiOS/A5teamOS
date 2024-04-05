@@ -59,7 +59,7 @@ mem[*memindex-8]=0;
  
 *shmfreeflag=(char)0; 
 }
-//usleep(100000);
+usleep(1000);
 if(getppid()==1){
 
 munmap(ptr,SHM_SIZE);
