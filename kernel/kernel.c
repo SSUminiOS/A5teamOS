@@ -15,21 +15,20 @@ int main() {
     print_minios("[MiniOS SSU] Hello, World!");
     int pid=fork();
     if(pid==-1) return-1;
-    else if(pid==0){SHM();}
+    else if(pid==0){SHM();} //SHM()함수를 자식프로세스로 실행
     else{
     char *input;
     char *command; 
     char *args[20];
     int num_args = 0;
-    minimkroot();
-    
-    
+    minimkroot(); //root를 만드는 함수
+
     
     while(1) {
         // readline을 사용하여 입력 받기
         input = readline("커맨드를 입력하세요(종료:exit) : ");
 	command = strtok(input," ");
-	while((args[num_args] = strtok(NULL," ")) !=NULL &&num_args<MAX_ARGS -1)
+	while((args[num_args] = strtok(NULL," ")) !=NULL &&num_args<MAX_ARGS -1) //input을 명령어와 인자들을 공백을 기준으로 나눈다. args가 인자를 저장하는 배열
 		num_args++;
 	
 	

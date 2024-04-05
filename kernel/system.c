@@ -9,16 +9,16 @@ void minisystem()
 
 
 
-typedef struct dir{
+typedef struct dir{ //폴더구조 모방
 char name[10];
 struct dir* subdirs[5];
 struct dir* parentdir;
 int num_of_subdir;
 }dir;
 
-dir* currentdir;
+dir* currentdir;//현재 폴더
 
-void minimkroot(){
+void minimkroot(){ //root 폴더 생성 minios가 실행될때 호출된다.
 dir* root = shmalloc(sizeof(dir));
 strcpy(root->name, "root");
 root->subdirs[0]=NULL;
@@ -30,7 +30,7 @@ printf("%ld", sizeof(dir));
 }
 
 
-void minicd(char *dir_name){
+void minicd(char *dir_name){//폴더 이동
 int i=0;
 
 
@@ -55,7 +55,7 @@ printf("Current diractory is %s\n",currentdir->name);}
 }
 }
 
-void minils(){
+void minils(){//현재 폴더의 subdir 출력
 int i;
 for (i=0;i<currentdir->num_of_subdir;i++){
 	printf("%s ",currentdir->subdirs[i]->name);}
@@ -63,7 +63,7 @@ for (i=0;i<currentdir->num_of_subdir;i++){
 	printf("\n");
 }
 
-void minimkdir(const char *dir_name){
+void minimkdir(const char *dir_name){//폴더생성 shmalloc 함수를 사용하여 shm내에 주소값을 할당받는다
 const char *name=dir_name;
 
 dir* subdir = shmalloc(sizeof(dir));
@@ -78,7 +78,7 @@ currentdir->num_of_subdir++;
 
 }
 
-void minirmdir(const char *dir_name){
+void minirmdir(const char *dir_name){//shm내의 주소값 할당해제
 
 
 int i;
